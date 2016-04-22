@@ -38,6 +38,5 @@
       cache: false,
       success: (data) ->
         that.setState({prices: data.prices, company: data.company, price_min: data.price_min, price_max: data.price_max})
-#        new Chartkick.LineChart("chart-1", data.prices, {"discrete": true, "min": data.price_min*0.99, "max": data.price_max*1.01})
       error: (xhr, status, err) ->
         console.error(that.props.url, status, err.toString())
