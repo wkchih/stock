@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-
+group :production do
+  gem 'pg'
+end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 
@@ -27,7 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 gem 'unicorn'
-gem 'mysql2', '~> 0.3.20'
 gem 'react-rails', '~> 1.6.0'
 gem 'chartkick'
 gem 'haml', '~> 4.0', '>= 4.0.7'
@@ -36,6 +37,8 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'mysql2', '~> 0.3.20'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
