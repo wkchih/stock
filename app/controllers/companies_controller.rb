@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
 
   def show
     company = Company.find(params[:id])
-    prices = company.prices.days(30).map{|p| [p.timestamp.try(:strftime, "%Y-%m-%d"), p.price]}
+    prices = company.prices.days(30).order(:timestamp).map{|p| [p.timestamp.try(:strftime, "%Y-%m-%d"), p.price]}
     prices_hash = Hash[prices]
     price_max = prices_hash.map{|k,v| v}.max
     price_min = prices_hash.map{|k,v| v}.min

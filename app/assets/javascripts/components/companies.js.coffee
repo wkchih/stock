@@ -23,9 +23,36 @@
         React.DOM.h2
           id: 'company-name'
           @state.company.name + ' (' + @state.company.symbol + ')'
+        React.DOM.div
+          className: 'div'
+          React.DOM.input
+            id: 'add-input'
+            className: 'input'
+          React.DOM.button
+            id: 'add-submit'
+            onClick: @handleAdd
+            className: 'submit'
+            'Add value'
+
       React.DOM.div
         id: 'chart-1'
         className: 'chart'
+
+  handleAdd: (e) ->
+    that = @
+    price = $('#add-input').val()
+    company_id = $('.company-select').val()
+    $.ajax
+      url: '/companies/' + company_id + '/prices.json',
+      type: 'POST'
+      data: {price: price}
+      success: (data) ->
+        $.extend(that.state.prices, data)
+        that.setState({prices: that.state.prices})
+        console.log(that.setState.prices)
+      error: (xhr, status) ->
+        console.log(xhr.responseText)
+
   handleChange: (e) ->
     that = @
     company_id = e.target.value
